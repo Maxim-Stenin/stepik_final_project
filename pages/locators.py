@@ -8,3 +8,16 @@ class MainPageLocators():
 class LoginPageLocators():
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
     REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
+
+class ProductPageLocators():
+    BUTTON_ADD_PRODUCT = (By.CSS_SELECTOR, ".btn.btn-lg.btn-primary.btn-add-to-basket")
+    NAME_PRODUCT = (By.CSS_SELECTOR, "div.col-sm-6.product_main h1")
+    PRICE_PRODUCT = (By.CSS_SELECTOR, "div.col-sm-6.product_main p.price_color")
+
+class BasketPageLocators():
+    BANNER_ADDED_PRODUCT_NAME = (By.CSS_SELECTOR, ".alert.alert-safe.alert-noicon.alert-success.fade.in div.alertinner")
+    BANNER_ADDED_PRODUCT_PRICE = (By.CSS_SELECTOR, ".alert.alert-safe.alert-noicon.alert-info.fade.in div.alertinner p")
+
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
