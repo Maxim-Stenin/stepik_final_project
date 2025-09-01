@@ -1,7 +1,7 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import time
+
 import math
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -26,6 +26,10 @@ class BasePage():
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Нет ссылки на страницу логина"
+
+    # Проверка: зарегистрирован ли пользователь
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "Иконки юзера нет, вероятно, пользователь не авторизован."
     
     # элемент есть на странице
     def is_element_present(self, how, what):

@@ -10,6 +10,7 @@ from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
+from .pages.base_page import BasePage
 
 def test_guest_can_add_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019" 
@@ -68,3 +69,40 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page.should_be_basket_url()
     basket_page.should_not_be_products_in_basket()
     basket_page.should_be_text_basket_empty()
+
+
+class TestUserAddToBasketFromProductPage():
+
+    @pytest.fixture(scope="function", autouse = True)
+    def setup(self, browser):
+        self.link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/" 
+        register = LoginPage(browser, self.link)
+        register.open()
+        register.register_new_user(str(time.time()) + "@fakemail.org", str(time.time()) + "maxPassword")
+        register.should_be_authorized_user()
+
+    def test_user_cant_see_success_message(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019" 
+        product_page = ProductPage(browser, link)
+        product_page.open()
+        product_page.should_not_be_success_message()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019" 
+        product_page = ProductPage(browser, link)
+        product_page.open()
+        product_page.save_name_product_on_page()
+        product_page.save_price_product_on_page()
+        product_page.add_product_in_basket()
+        time.sleep(2)
+        product_page.solve_quiz_and_get_code()
+        time.sleep(2)
+        product_page.should_be_alert_name_product()
+        product_page.should_be_alert_price_product()      
+
+    # Добавьте в класс фикстуру setup. В этой функции нужно:
+    # открыть страницу регистрации;
+    # зарегистрировать нового пользователя;
+    # проверить, что пользователь залогинен.  
+
+    
