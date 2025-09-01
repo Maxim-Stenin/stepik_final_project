@@ -12,6 +12,7 @@ from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
 from .pages.base_page import BasePage
 
+@pytest.mark.need_review
 def test_guest_can_add_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019" 
     product_page = ProductPage(browser, link)
@@ -51,6 +52,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.open()
     page.should_be_login_link()
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = MainPage(browser, link)
@@ -60,6 +62,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     login = LoginPage(browser, browser.current_url)
     login.should_be_login_page()
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/"
     product = ProductPage(browser, link)
@@ -86,7 +89,8 @@ class TestUserAddToBasketFromProductPage():
         product_page = ProductPage(browser, link)
         product_page.open()
         product_page.should_not_be_success_message()
-
+    
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019" 
         product_page = ProductPage(browser, link)
@@ -94,15 +98,14 @@ class TestUserAddToBasketFromProductPage():
         product_page.save_name_product_on_page()
         product_page.save_price_product_on_page()
         product_page.add_product_in_basket()
-        time.sleep(2)
+        # задержка специально, чтобы увидеть всё, что происходит
+        time.sleep(1.5)
         product_page.solve_quiz_and_get_code()
-        time.sleep(2)
+        # задержка специально, чтобы увидеть всё, что происходит
+        time.sleep(1.5)
         product_page.should_be_alert_name_product()
         product_page.should_be_alert_price_product()      
-
-    # Добавьте в класс фикстуру setup. В этой функции нужно:
-    # открыть страницу регистрации;
-    # зарегистрировать нового пользователя;
-    # проверить, что пользователь залогинен.  
+        # задержка специально, чтобы увидеть всё, что происходит
+        time.sleep(3)
 
     

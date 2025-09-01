@@ -1,26 +1,49 @@
-attrs==25.3.0
-certifi==2025.4.26
-cffi==1.17.1
-colorama==0.4.6
-exceptiongroup==1.3.0
-h11==0.16.0
-idna==3.10
-iniconfig==2.1.0
-outcome==1.3.0.post0
-packaging==25.0
-pluggy==1.6.0
-pycparser==2.22
-Pygments==2.19.2
-PySocks==1.7.1
 pytest==8.4.1
-pytest-rerunfailures==15.1
 selenium==4.33.0
-sniffio==1.3.1
-sortedcontainers==2.4.0
-tomli==2.2.1
-trio==0.30.0
-trio-websocket==0.12.2
-typing_extensions==4.13.2
-urllib3==2.4.0
-websocket-client==1.8.0
-wsproto==1.2.0
+
+# тут еще были какие-то пакеты. Но на курсе посоветовали их убрать.
+
+# attrs==25.3.0
+# certifi==2025.4.26
+# cffi==1.17.1
+# colorama==0.4.6
+# exceptiongroup==1.3.0
+# h11==0.16.0
+# idna==3.10
+# iniconfig==2.1.0
+# outcome==1.3.0.post0
+# packaging==25.0
+# pluggy==1.6.0
+# pycparser==2.22
+# Pygments==2.19.2
+# PySocks==1.7.1
+# pytest-rerunfailures==15.1
+# sniffio==1.3.1
+# sortedcontainers==2.4.0
+# tomli==2.2.1
+# trio==0.30.0
+# trio-websocket==0.12.2
+# typing_extensions==4.13.2
+# urllib3==2.4.0
+# websocket-client==1.8.0
+# wsproto==1.2.0
+
+# Вот что говорит ChatGPT:
+# Какие пакеты точно нужны для твоего курса
+# Для автоматизации тестов на Selenium + Pytest минимально нужны:
+# pytest — чтобы запускать тесты.
+# selenium — чтобы управлять браузером.
+# Остальные пакеты могут понадобиться только для расширений, плагинов или специфичных задач.
+
+# Для чего могут быть остальные
+# pytest-rerunfailures — плагин для Pytest, чтобы повторно запускать упавшие тесты. Если его не используешь, можно удалить.
+# attrs, exceptiongroup, iniconfig, pluggy, outcome — зависимости Pytest, их лучше оставить, иначе pytest не будет работать.
+# colorama — часто используется для раскрашивания текста в консоли (Pytest иногда его использует для Windows).
+# certifi, cffi, idna, urllib3, PySocks, websocket-client, h11, wsproto, trio, trio-websocket — это зависимости библиотек для сетевого взаимодействия, не обязательно для Selenium с локальным браузером, но могут понадобиться для некоторых пакетов или плагинов.
+# Pygments — подсветка синтаксиса в выводе Pytest (не критично).
+# packaging, sortedcontainers, typing_extensions, tomli — вспомогательные библиотеки для разных пакетов, обычно оставляют.
+
+# Что будет, если удалить ненужные
+# Если удалишь Pytest или Selenium → тесты не будут запускаться.
+# Если удалишь зависимости Pytest (pluggy, attrs, iniconfig) → pytest может сломаться.
+# Остальные (websocket-client, trio, wsproto и т.д.) — скорее всего, ничего критичного не произойдёт, пока ты не используешь плагины или асинхронные функции, которые зависят от них.
