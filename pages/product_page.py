@@ -37,12 +37,18 @@ class ProductPage(BasePage):
         price_product_text = self.save_price_product_on_page()
         print("Баннер с суммой товара на странице успеха:", alert_price_product_text)
         assert ("Your basket total is now "+price_product_text) == alert_price_product_text, "Сумма товара неверная"
-
+    
+    # Негативная проверка. Тренировался по курсу
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*BasketPageLocators.BANNER_ADDED_PRODUCT_NAME), "Сообщение успеха есть, но быть не должно"
-
+    
+    # Негативная проверка. Тренировался по курсу
     def should_not_be_success_message2(self):
         assert self.is_disappeared(*BasketPageLocators.BANNER_ADDED_PRODUCT_NAME), "Сообщение успеха есть, но быть не должно"
+
+    def go_to_basket(self):
+        btn_basket = self.browser.find_element(*ProductPageLocators.BTN_BASKET)
+        btn_basket.click()
 
 
 
